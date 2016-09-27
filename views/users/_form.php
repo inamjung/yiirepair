@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\widgets\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Users */
@@ -29,9 +30,17 @@ use yii\widgets\ActiveForm;
             ]) ?>
 
     <?= $form->field($model, 'role')->textInput() ?>
+    <div class="row">        
+                    <div class="col-xs-12 col-sm-12 col-md-12  ">
+                <?= $form->field($model, 'avatar_img')->label('รูปประจำตัว')->fileInput() ?>       
+                    </div>    
+                </div>     
+                        <?php if ($model->avatar) { ?>
+                            <?= Html::img('avatars/' . $model->avatar, ['class' => 'img-responsive img-circle', 'width' => '150px;']); ?>
+                <?php } ?> 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'บันทึก' : 'บันทึก', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

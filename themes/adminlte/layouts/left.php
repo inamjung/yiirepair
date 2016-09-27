@@ -4,11 +4,21 @@ use yii\bootstrap\Nav;
 //use yii\bootstrap\NavBar;
 use yii\helpers\Url;
 use dektrium\user\models\User;
+use yii\helpers\Html;
 ?>
 
 
 <aside class="main-sidebar">
     <section class="sidebar">
+        <?php if(!Yii::$app->user->isGuest){ ?> 
+        <div class="pull-left image">
+                <?= Html::img('avatars/' . Yii::$app->user->identity->avatar,
+                        ['class' => 'img-circle', 'width' => '40px;'])
+                ?>                
+
+            </div>
+        <?php } ?>
+        <br>
          <?=
         Nav::widget(
                 [
@@ -18,7 +28,7 @@ use dektrium\user\models\User;
                         '<li class="header"></li>',
                         Yii::$app->user->isGuest ?
                                 ['label' => '<i class="glyphicon glyphicon-log-in"></i> เข้าสู่ระบบ', 'url' => ['/user/security/login']] :
-                                ['label' => '<i class="glyphicon glyphicon-user"></i> (' . Yii::$app->user->identity->username . ')', 'items' => [
+                                ['label' => 'ผู้ใช้งาน (' . Yii::$app->user->identity->username . ')', 'items' => [
                                 ['label' => 'ข้อมูลส่วนตัว', 'url' => ['/users/indexuser']],
 
                                 ['label' => 'Logout', 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']],
@@ -27,7 +37,7 @@ use dektrium\user\models\User;
                 ]
         );
         ?>
-
+        <hr>
         <ul class="sidebar-menu">
             <li class="treeview "> 
                 <a href="#">

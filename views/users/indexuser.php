@@ -32,6 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     'id',
+                    [
+                    'attribute'=>'avatar',
+                    'format'=>'html',
+                    'value'=>function($model){
+                        return html::img('avatars/'.$model->avatar,['class'=>'thumbnail-responsive',
+                            'style'=>'width: 80px;']);
+                }
+            ],
                     'username',
                     'name',
                     'email:email',
