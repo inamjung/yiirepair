@@ -4,9 +4,18 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'language'=>'th_TH',
+    'name'=>'<img style="height:40px; margin-top:12px;" src="./img/1.png"> แจ้งซ่อม',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'view'=>[
+            'theme'=>[
+                'pathMap'=>[
+                    '@app/views'=>'@app/themes/adminlte'
+                ],
+            ]
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '_Nhw3K5lWSsmJmmw8toqZWo7h2VcY8GN',
@@ -15,8 +24,12 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            //'identityClass' => 'app\models\User',
+            'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
+        ],
+        'authManager'=>[
+            'class'=>'dektrium\rbac\components\DbManager'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -47,6 +60,44 @@ $config = [
         ],
         */
     ],
+    'modules'=>[
+        'gridview'=>[
+            'class'=>'\kartik\grid\Module'
+        ],
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableUnconfirmedLogin' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin']
+        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu',
+        ],
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+            
+            'admin/*',
+            'user/*',
+            'users/*',
+            'rbac/*',
+            'gii/*',
+            'setting/*',
+           
+            'departments/*',
+            'repairs/*',
+            'engineers/*',
+            'tooltypes/*',
+            'tools/*',
+           
+            ]
+        ],
+
     'params' => $params,
 ];
 
