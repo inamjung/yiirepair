@@ -234,7 +234,7 @@ class RepairsController extends Controller
             ]);       
     }
     
-    public function actionReport2($date1 = null, $date2 = null,$total=null) {
+    public function actionReport2($date1 = null, $date2 = null,$total=null,$name=null) {
 
         if ($date1 == null) {
             $date1 = date('Y-m-d');
