@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -18,7 +19,15 @@ use yii\helpers\Html;
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
-
+            
+                
+        <?php if(Yii::$app->user->isGuest){ ?>        
+            <li><a href="<?php echo Url::to(['/user/registration/register']); ?>">
+                    <i class="glyphicon glyphicon-user"></i>
+                    <span> สมัครใช้งาน</span> 
+                    <small class="label pull-right bg-blue"></small></a>
+            </li>    
+        <?php } ?>    
                 <!-- Messages: style can be found in dropdown.less-->
                 
                 <!-- User Account: style can be found in dropdown.less -->
