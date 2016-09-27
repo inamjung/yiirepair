@@ -88,9 +88,10 @@ $config = [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'site/*',
-            
-            'admin/*',
             'user/*',
+            /*
+            'admin/*',
+            
             'users/*',
             'rbac/*',
             'gii/*',
@@ -101,7 +102,7 @@ $config = [
             'engineers/*',
             'tooltypes/*',
             'tools/*',
-           
+           */
             ]
         ],
 
