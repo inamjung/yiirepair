@@ -100,7 +100,7 @@ $this->registerJs("$(function () {
 
     $('#chart1').highcharts({
         chart: {
-            type: 'pie'
+            type: 'column'
         },
         title: {
             text: 'สรุปผลการซ่อม'
